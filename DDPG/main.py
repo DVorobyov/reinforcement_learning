@@ -33,8 +33,8 @@ def trainer(env, agent, max_episodes, max_steps, min_eps, batch_size, eps, decr_
                 episode_rewards.append(episode_reward)
                 print("Episode " + str(episode) + ": " + str(episode_reward) + " eps: " + str(action_noise))
                 if episode_reward >= 100:
-                    print(f"Saving trained model as cartpole{episode}-{episode_reward}.h5")
-                    agent.save(f"cartpole{episode}-{episode_reward}-{batch_size}.h5")
+                    print(f"Saving trained model as LunarLander{episode}-{episode_reward}.h5")
+                    agent.save(f"LunarLander{episode}-{episode_reward}-{batch_size}.h5")
                 break
 
             state = next_state
@@ -61,7 +61,7 @@ def trainer(env, agent, max_episodes, max_steps, min_eps, batch_size, eps, decr_
 
 def test(env, agent, max_episodes, max_steps, batch_size, action_noise):
     rews = []
-    agent.load("lunarlander988-253.1572060422451.h5")
+    agent.load("LunarLander988-253.1572060422451.h5")
     for e in range(100):
         state = agent.env.reset()
         done = False
@@ -80,7 +80,7 @@ def test(env, agent, max_episodes, max_steps, batch_size, action_noise):
     print(sum(rews) / len(rews))
 
 
-env = gym.make("MountainCarContinuous-v0")
+env = gym.make("LunarLanderContinuous-v2")
 max_episodes = 500
 max_steps = 500
 batch_size = 256
